@@ -313,8 +313,7 @@ class NonCleanExitError(Exception):
 
 class CliDownloader():
     def find_binary(self, name):
-        dirs = ['/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin',
-            '/sbin', '/bin']
+        dirs = os.environ['PATH'].split(':')
         for dir in dirs:
             path = os.path.join(dir, name)
             if os.path.exists(path):
