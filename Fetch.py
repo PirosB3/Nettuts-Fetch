@@ -24,17 +24,15 @@ class FetchCommand(sublime_plugin.WindowCommand):
 
     def __init__(self, *args, **kwargs):
         super(FetchCommand, self).__init__(*args, **kwargs)
-
-        s = sublime.load_settings('Fetch.sublime-settings')
-        if not s.has('packages'):
-            s.set('packages', self.packagesPlaceholder)
-        if not s.has('files'):
-            s.set('files', self.filesPlaceholder)
+        self.s = sublime.load_settings('Fetch.sublime-settings')
+        if not self.s.has('packages'):
+            self.s.set('packages', self.packagesPlaceholder)
+        if not self.s.has('files'):
+            self.s.set('files', self.filesPlaceholder)
         sublime.save_settings('Fetch.sublime-settings')
 
 
     def run(self):
-        self.s = sublime.load_settings('Fetch.sublime-settings')
         self.fileList = []
         self.packageList = []
 
